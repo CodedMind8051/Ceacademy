@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C.E. Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #1f3c88;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hamburger {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #1f3c88;
+      color: #fff;
+      padding-top: 60px;
+      transition: 0.4s;
+      z-index: 10;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 15px 25px;
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .side-nav a:hover {
+      background: #162a5c;
+    }
+
+    .top-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 30px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1f3c88;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #1f3c88;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #1f3c88;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #162a5c;
+    }
+
+    .social {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .social a {
+      color: #1f3c88;
+      font-size: 22px;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .social a:hover {
+      color: #0d1d3f;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 12px;
+      background: #1f3c88;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background: #1f3c88;
+      color: white;
+    }
+
+    @media(max-width: 600px) {
+      .profile-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .side-nav {
+        width: 200px;
+        left: -200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <i class="fas fa-bars hamburger" onclick="openNav()"></i>
+    <h1>C.E. Academy</h1>
+  </header>
+
+  <div id="sideNav" class="side-nav">
+    <a href="javascript:void(0)" onclick="closeNav()">&times; Close</a>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('about')">About</a>
+    <a href="#" onclick="showSection('teachers')">Teachers</a>
+    <a href="#" onclick="showSection('contact')">Contact</a>
+    <a href="#" onclick="showSection('admission')">Admission</a>
+    <a href="#" onclick="showSection('achievement')">Achievements</a>
+    <a href="#" onclick="showSection('timetable')">Timetable</a>
+    <a href="#" onclick="showSection('gallery')">Gallery</a>
+  </div>
+
+  <img
+    src="https://content.jdmagicbox.com/comp/bhagalpur/s2/9999px641.x641.150805194832.b3s2/catalogue/c-e-academy-school-tilkamanjhi-bhagalpur-cbse-schools-e1u3waur8z.jpg"
+    class="top-image" alt="Banner" />
+
+  <section id="home">
+    <h2>Welcome to C.E. Academy</h2>
+    <div style="display: flex; justify-content: center; margin-top: 30px;">
+      <div style="
+        width: 90%; 
+        max-width: 900px; 
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        border-radius: 20px; 
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        overflow: hidden;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      ">
+        <video style="
+            width: 100%; 
+            height: auto; 
+            border-radius: 15px; 
+            object-fit: contain;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          " autoplay muted loop playsinline poster="https://img.youtube.com/vi/2Vv-BfVoq4g/maxresdefault.jpg">
+
+          <source src="videoplayback.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+
+
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Principal">
+      <div>
+        <h3>Principal</h3>
+        <p>MR. Najmudin</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Director">
+      <div>
+        <h3>Director</h3>
+        <p>MR. Aftab</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="hidden">
+    <h2>About Us</h2>
+    <div class="card">C.E. Academy is committed to excellence in education, innovation, and holistic student
+      development.</div>
+    <div class="card">💡 Smart Classrooms with interactive digital boards.</div>
+    <div class="card">🧪 Science and Computer Labs for practical learning.</div>
+    <div class="card">⚽ Co-curricular activities to foster creativity and leadership.</div>
+    <div class="card">📚 Well-stocked Library to nurture reading habits.</div>
+    <div class="card">🎓 Experienced and dedicated faculty for quality education.</div>
+    <div class="card">🚍 Safe and reliable School Transport services.</div>
+    <div class="card">🏥 On-campus Medical Facility for emergency care.</div>
+    <div class="card">🌳 Green Campus promoting eco-friendly values.</div>
+    <div class="card">🎨 Art, Music & Dance classes to boost creative expression.</div>
+    <div class="card">🏆 Regular Competitions to build confidence and skills.</div>
+    <div class="card">🔐 CCTV Surveillance for enhanced safety and security.</div>
+    <div class="card">🕹️ Modern Computer Education from early classes.</div>
+    <div class="card">🌐 Wi-Fi enabled campus for seamless learning access.</div>
+    <div class="card">🍽️ Hygienic Canteen with healthy food options.</div>
+    <div class="card">🗓️ Academic Calendar with timely updates and events.</div>
+    <div class="card">📸 Annual Day, Sports Meet, and Celebrations.</div>
+    <div class="card">💬 Parent-Teacher Interaction for student development.</div>
+    <div class="card">📈 Regular Progress Reports and assessments.</div>
+
+  </section>
+
+  <section id="teachers" class="hidden">
+    <h2>Our Teachers</h2>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Nk sir</h3>
+        <p>Math Expert with 10+ years of experience. Passionate about simplifying learning.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Rahul sir </h3>
+        <p>Physics Teacher who turns science into stories. Known for his engaging classes.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Aabit sir </h3>
+        <p>Social science Teacher who turns sst into stories. Known for his engaging classes.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Chudhri sir </h3>
+        <p>Hindi Teacher who teach student like a friend  </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="hidden">
+    <h2>Contact Us</h2>
+    <div class="card">
+      <label>Name</label><input type="text" placeholder="Your Full Name">
+      <label>Email</label><input type="email" placeholder="Your Email">
+      <label>Phone</label><input type="tel" placeholder="Your Phone Number">
+      <label>Message</label><textarea rows="3" placeholder="Your Message"></textarea>
+      <button>Send Message</button>
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="admission" class="hidden">
+    <h2>Admission Form</h2>
+    <div class="card">
+      <label>Student Name</label><input type="text" placeholder="Full Name">
+      <label>Parent Name</label><input type="text" placeholder="Parent Name">
+      <label>Email</label><input type="email" placeholder="Email">
+      <label>Phone</label><input type="tel" placeholder="Phone">
+      <label>Class for Admission</label><input type="text" placeholder="e.g. Class 6">
+      <label>Address</label><textarea rows="2" placeholder="Address"></textarea>
+      <button>Submit Form</button>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievement" class="hidden" style="padding: 40px; background: #f5f7fa;">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px; color: #333;">🎖️ Student Achievements</h2>
+
+    <div
+      style="max-width: 600px; margin: 10px auto; background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTopwa7tmoqV1Ixs2YQcENlGTy7xkzluqtzkQ&s"
+        alt="Achievement"
+        style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #007bff;">
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">
+        🎓 <strong>100% pass rate</strong> in Class 10<br>
+        🏅 13 students scored distinctions<br>
+        🏆 Champions in Sports & Olympiads
+      </p>
+    </div>
+
+    <div
+      style="max-width: 600px; margin: 10px auto; background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJMBEvU-tYFAmXvEUCYxMyY31QbhbahICYrg&s"
+        alt="Achievement"
+        style="width: 190px; height: 190px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #007bff;">
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">
+        🏅 High score of students<br>
+      </p>
+    </div>
+  </section>
+
+  <section id="timetable" class="hidden">
+    <h2>Class-wise Timetable</h2>
+    <div class="card">
+      <table>
+        <tr>
+          <th>Class</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Math</td>
+          <td>English</td>
+          <td>Science</td>
+          <td>History</td>
+          <td>Sports</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>English</td>
+          <td>Math</td>
+          <td>Geography</td>
+          <td>Science</td>
+          <td>Music</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Science</td>
+          <td>Math</td>
+          <td>Computer</td>
+          <td>Art</td>
+          <td>English</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="gallery" class="hidden">
+    <h2>Gallery</h2>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgdj2e3lFKw4sp52PXqluOugHEyZO82e55zw&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7t6z0IjlPyMG85Q6BgdAkAXcWNaKhED5-Tw&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs2AeEDmfQqNbDp91lNWinyDJAIauz-8IKng&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaS6dcA7XTITDkBBr0bKtpW1X5ZSC1GZ_Cfw&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 C.E. Academy | Designed with ❤️ by Team CodedMind
+  </footer>
+
+  <script>
+    function openNav() {
+      document.getElementById("sideNav").style.left = "0";
+    }
+    function closeNav() {
+      document.getElementById("sideNav").style.left = "-250px";
+    }
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      closeNav();
+    }
+  </script>
+</body>
+
+</html>
