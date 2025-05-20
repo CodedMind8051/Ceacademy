@@ -8,192 +8,384 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; /* Premium, modern font */
+}
 
-    body {
-      background: linear-gradient(135deg, #e0eafc, #cfdef3);
-      overflow-x: hidden;
-    }
+body {
+  /* Deep navy to soft ivory gradient */
+  background: linear-gradient(135deg, #1A2A44, #F9F1E7);
+  overflow-x: hidden;
+  /* Subtle linen texture for sophistication */
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80"%3E%3Cpath fill="%23ffffff" fill-opacity="0.02" d="M14 16H9v-2h5V9H2v5H0v-2h2V7h5v2h5V2h2v5h2v2h-2v5h-2zM2 2h5v5H2z"/%3E%3C/svg%3E');
+}
 
-    header {
-      background: #1f3c88;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+header {
+  /* Navy to gold gradient */
+  background: linear-gradient(90deg, #1A2A44, #D4A017);
+  color: #F9F1E7;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(212, 160, 23, 0.3);
+}
 
-    .hamburger {
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      font-size: 24px;
-      cursor: pointer;
-    }
+header h1 {
+  font-family: 'Cinzel', serif; /* Luxurious serif font */
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-    .side-nav {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #1f3c88;
-      color: #fff;
-      padding-top: 60px;
-      transition: 0.4s;
-      z-index: 10;
-    }
+.hamburger {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-size: 32px;
+  cursor: pointer;
+  transition: transform 0.4s ease, color 0.4s ease;
+  color: #F9F1E7;
+}
 
-    .side-nav a {
-      display: block;
-      padding: 15px 25px;
-      font-size: 18px;
-      color: #fff;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+.hamburger:hover {
+  transform: rotate(90deg) scale(1.2);
+  color: #D4A017; /* Gold accent */
+}
 
-    .side-nav a:hover {
-      background: #162a5c;
-    }
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  /* Deep navy to emerald gradient */
+  background: linear-gradient(180deg, #1A2A44, #2E7D32);
+  color: #F9F1E7;
+  padding-top: 120px;
+  transition: left 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 10;
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.3);
+}
 
-    .top-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
+.side-nav.active {
+  left: 0;
+}
 
-    section {
-      padding: 30px 20px;
-    }
+.side-nav a {
+  display: flex;
+  align-items: center;
+  padding: 20px 35px;
+  font-size: 18px;
+  color: #F9F1E7;
+  text-decoration: none;
+  transition: background 0.4s, padding-left 0.4s, transform 0.4s;
+}
 
-    h2 {
-      text-align: center;
-      color: #1f3c88;
-      margin-bottom: 20px;
-      font-size: 28px;
-    }
+.side-nav a::before {
+  content: '\f015'; /* Home icon (FontAwesome) */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 15px;
+  font-size: 20px;
+  transition: transform 0.4s;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 20px;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 600px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s;
-    }
+.side-nav a:hover {
+  background: rgba(212, 160, 23, 0.2); /* Gold overlay */
+  padding-left: 45px;
+  transform: translateX(8px);
+}
 
-    .card:hover {
-      transform: scale(1.02);
-    }
+.side-nav a:hover::before {
+  transform: scale(1.3);
+}
 
-    .profile-card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+.top-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1);
+  animation: scaleIn 1.5s ease-out;
+}
 
-    .profile-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #1f3c88;
-    }
+@keyframes scaleIn {
+  from {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
+section {
+  padding: 60px 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
+}
 
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #1f3c88;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+h2 {
+  text-align: center;
+  color: #1A2A44; /* Deep navy */
+  margin-bottom: 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  position: relative;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
 
-    button:hover {
-      background: #162a5c;
-    }
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, #D4A017, #2E7D32);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
 
-    .social {
-      margin-top: 15px;
-      text-align: center;
-    }
+h2:hover::after {
+  width: 160px;
+}
 
-    .social a {
-      color: #1f3c88;
-      font-size: 22px;
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
+.card {
+  /* Refined glassmorphism */
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  padding: 35px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 160, 23, 0.3); /* Gold border */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
 
-    .social a:hover {
-      color: #0d1d3f;
-    }
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(212, 160, 23, 0.2); /* Gold glow */
+}
 
-    .hidden {
-      display: none;
-    }
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  animation: slideIn 0.8s ease-out;
+}
 
-    footer {
-      text-align: center;
-      padding: 12px;
-      background: #1f3c88;
-      color: #fff;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      font-size: 14px;
-    }
+@keyframes slideIn {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #D4A017; /* Gold */
+  transition: transform 0.5s ease, border-color 0.5s ease;
+}
 
-    th,
-    td {
-      padding: 12px;
-      text-align: center;
-      border: 1px solid #ccc;
-    }
+.profile-img:hover {
+  transform: scale(1.15) rotate(8deg);
+  border-color: #2E7D32; /* Emerald */
+}
 
-    th {
-      background: #1f3c88;
-      color: white;
-    }
+input,
+textarea {
+  width: 100%;
+  padding: 16px;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+}
 
-    @media(max-width: 600px) {
-      .profile-card {
-        flex-direction: column;
-        text-align: center;
-      }
+input:focus,
+textarea:focus {
+  border-color: #D4A017; /* Gold */
+  box-shadow: 0 0 12px rgba(212, 160, 23, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+  outline: none;
+}
 
-      .side-nav {
-        width: 200px;
-        left: -200px;
-      }
-    }
+button {
+  margin-top: 25px;
+  padding: 16px 40px;
+  background: linear-gradient(90deg, #D4A017, #2E7D32);
+  color: #F9F1E7;
+  border: none;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.4s, transform 0.4s, box-shadow 0.4s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #2E7D32, #D4A017);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.5);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(212, 160, 23, 0.3);
+}
+
+.social {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.social a {
+  color: #D4A017; /* Gold */
+  font-size: 30px;
+  margin: 0 18px;
+  transition: color 0.4s, transform 0.4s;
+}
+
+.social a:hover {
+  color: #2E7D32; /* Emerald */
+  transform: scale(1.4) rotate(12deg);
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: linear-gradient(90deg, #1A2A44, #2E7D32);
+  color: #F9F1E7;
+  
+  bottom: 0;
+  width: 100%;
+  margin-top:10px;
+  font-size: 16px;
+  box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.15);
+  transition: background 0.4s, transform 0.4s;
+}
+
+footer:hover {
+  background: linear-gradient(90deg, #2E7D32, #1A2A44);
+  transform: translateY(-3px);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 18px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+th {
+  background: linear-gradient(90deg, #D4A017, #2E7D32);
+  color: #F9F1E7;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+td {
+  background: rgba(255, 255, 255, 0.95);
+  transition: background 0.4s, transform 0.4s;
+}
+
+td:hover {
+  background: #2E7D32; /* Emerald */
+  transform: scale(1.03);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .side-nav {
+    width: 260px;
+    left: -260px;
+  }
+
+  .top-image {
+    height: 300px;
+  }
+
+  h2 {
+    font-size: 2.3rem;
+  }
+
+  .card {
+    padding: 30px;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .hamburger {
+    font-size: 28px;
+  }
+
+  .side-nav {
+    width: 240px;
+    left: -240px;
+  }
+
+  .side-nav a {
+    font-size: 16px;
+    padding: 16px 30px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  button {
+    padding: 14px 30px;
+    font-size: 16px;
+  }
+}
   </style>
 </head>
 
@@ -234,17 +426,7 @@
         flex-direction: column;
         align-items: center;
       ">
-        <video style="
-            width: 100%; 
-            height: auto; 
-            border-radius: 15px; 
-            object-fit: contain;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-          " autoplay muted loop playsinline poster="https://img.youtube.com/vi/2Vv-BfVoq4g/maxresdefault.jpg">
-
-          <source src="videoplayback.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+       <div style="position:relative; width:100%; height:0px; padding-bottom:56.604%"><iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/avb6ne?autoplay=1&muted=1&nocontrols=1" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
       </div>
     </div>
 
