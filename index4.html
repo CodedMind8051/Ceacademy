@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C.E. Academy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; /* Premium, modern font */
+}
+
+body {
+  /* Deep navy to soft ivory gradient */
+  background: linear-gradient(135deg, #1A2A44, #F9F1E7);
+  overflow-x: hidden;
+  /* Subtle linen texture for sophistication */
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80"%3E%3Cpath fill="%23ffffff" fill-opacity="0.02" d="M14 16H9v-2h5V9H2v5H0v-2h2V7h5v2h5V2h2v5h2v2h-2v5h-2zM2 2h5v5H2z"/%3E%3C/svg%3E');
+}
+
+header {
+  /* Navy to gold gradient */
+  background: linear-gradient(90deg, #1A2A44, #D4A017);
+  color: #F9F1E7;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(212, 160, 23, 0.3);
+}
+
+header h1 {
+  font-family: 'Cinzel', serif; /* Luxurious serif font */
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-size: 32px;
+  cursor: pointer;
+  transition: transform 0.4s ease, color 0.4s ease;
+  color: #F9F1E7;
+}
+
+.hamburger:hover {
+  transform: rotate(90deg) scale(1.2);
+  color: #D4A017; /* Gold accent */
+}
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  /* Deep navy to emerald gradient */
+  background: linear-gradient(180deg, #1A2A44, #2E7D32);
+  color: #F9F1E7;
+  padding-top: 120px;
+  transition: left 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 10;
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.side-nav.active {
+  left: 0;
+}
+
+.side-nav a {
+  display: flex;
+  align-items: center;
+  padding: 20px 35px;
+  font-size: 18px;
+  color: #F9F1E7;
+  text-decoration: none;
+  transition: background 0.4s, padding-left 0.4s, transform 0.4s;
+}
+
+.side-nav a::before {
+  content: '\f015'; /* Home icon (FontAwesome) */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 15px;
+  font-size: 20px;
+  transition: transform 0.4s;
+}
+
+.side-nav a:hover {
+  background: rgba(212, 160, 23, 0.2); /* Gold overlay */
+  padding-left: 45px;
+  transform: translateX(8px);
+}
+
+.side-nav a:hover::before {
+  transform: scale(1.3);
+}
+
+.top-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1);
+  animation: scaleIn 1.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+section {
+  padding: 60px 25px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
+}
+
+h2 {
+  text-align: center;
+  color: #1A2A44; /* Deep navy */
+  margin-bottom: 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  position: relative;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, #D4A017, #2E7D32);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+h2:hover::after {
+  width: 160px;
+}
+
+.card {
+  /* Refined glassmorphism */
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  padding: 35px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 160, 23, 0.3); /* Gold border */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 60px rgba(212, 160, 23, 0.2); /* Gold glow */
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #D4A017; /* Gold */
+  transition: transform 0.5s ease, border-color 0.5s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.15) rotate(8deg);
+  border-color: #2E7D32; /* Emerald */
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 16px;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #D4A017; /* Gold */
+  box-shadow: 0 0 12px rgba(212, 160, 23, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+  outline: none;
+}
+
+button {
+  margin-top: 25px;
+  padding: 16px 40px;
+  background: linear-gradient(90deg, #D4A017, #2E7D32);
+  color: #F9F1E7;
+  border: none;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.4s, transform 0.4s, box-shadow 0.4s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #2E7D32, #D4A017);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.5);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(212, 160, 23, 0.3);
+}
+
+.social {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.social a {
+  color: #D4A017; /* Gold */
+  font-size: 30px;
+  margin: 0 18px;
+  transition: color 0.4s, transform 0.4s;
+}
+
+.social a:hover {
+  color: #2E7D32; /* Emerald */
+  transform: scale(1.4) rotate(12deg);
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: linear-gradient(90deg, #1A2A44, #2E7D32);
+  color: #F9F1E7;
+  
+  bottom: 0;
+  width: 100%;
+  margin-top:10px;
+  font-size: 16px;
+  box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.15);
+  transition: background 0.4s, transform 0.4s;
+}
+
+footer:hover {
+  background: linear-gradient(90deg, #2E7D32, #1A2A44);
+  transform: translateY(-3px);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 18px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+th {
+  background: linear-gradient(90deg, #D4A017, #2E7D32);
+  color: #F9F1E7;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+td {
+  background: rgba(255, 255, 255, 0.95);
+  transition: background 0.4s, transform 0.4s;
+}
+
+td:hover {
+  background: #2E7D32; /* Emerald */
+  transform: scale(1.03);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .side-nav {
+    width: 260px;
+    left: -260px;
+  }
+
+  .top-image {
+    height: 300px;
+  }
+
+  h2 {
+    font-size: 2.3rem;
+  }
+
+  .card {
+    padding: 30px;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .hamburger {
+    font-size: 28px;
+  }
+
+  .side-nav {
+    width: 240px;
+    left: -240px;
+  }
+
+  .side-nav a {
+    font-size: 16px;
+    padding: 16px 30px;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  button {
+    padding: 14px 30px;
+    font-size: 16px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <i class="fas fa-bars hamburger" onclick="openNav()"></i>
+    <h1>C.E. Academy</h1>
+  </header>
+
+  <div id="sideNav" class="side-nav">
+    <a href="javascript:void(0)" onclick="closeNav()">&times; Close</a>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('about')">About</a>
+    <a href="#" onclick="showSection('teachers')">Teachers</a>
+    <a href="#" onclick="showSection('contact')">Contact</a>
+    <a href="#" onclick="showSection('admission')">Admission</a>
+    <a href="#" onclick="showSection('achievement')">Achievements</a>
+    <a href="#" onclick="showSection('timetable')">Timetable</a>
+    <a href="#" onclick="showSection('gallery')">Gallery</a>
+  </div>
+
+  <img
+    src="https://content.jdmagicbox.com/comp/bhagalpur/s2/9999px641.x641.150805194832.b3s2/catalogue/c-e-academy-school-tilkamanjhi-bhagalpur-cbse-schools-e1u3waur8z.jpg"
+    class="top-image" alt="Banner" />
+
+  <section id="home">
+    <h2>Welcome to C.E. Academy</h2>
+    <div style="display: flex; justify-content: center; margin-top: 30px;">
+      <div style="
+        width: 90%; 
+        max-width: 900px; 
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        border-radius: 20px; 
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        overflow: hidden;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      ">
+        <video style="
+            width: 100%; 
+            height: auto; 
+            border-radius: 15px; 
+            object-fit: contain;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          " autoplay muted loop playsinline poster="https://img.youtube.com/vi/2Vv-BfVoq4g/maxresdefault.jpg">
+
+          <source src="videoplayback.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+
+
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Principal">
+      <div>
+        <h3>Principal</h3>
+        <p>MR. Najmudin</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Director">
+      <div>
+        <h3>Director</h3>
+        <p>MR. Aftab</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="hidden">
+    <h2>About Us</h2>
+    <div class="card">C.E. Academy is committed to excellence in education, innovation, and holistic student
+      development.</div>
+    <div class="card">💡 Smart Classrooms with interactive digital boards.</div>
+    <div class="card">🧪 Science and Computer Labs for practical learning.</div>
+    <div class="card">⚽ Co-curricular activities to foster creativity and leadership.</div>
+    <div class="card">📚 Well-stocked Library to nurture reading habits.</div>
+    <div class="card">🎓 Experienced and dedicated faculty for quality education.</div>
+    <div class="card">🚍 Safe and reliable School Transport services.</div>
+    <div class="card">🏥 On-campus Medical Facility for emergency care.</div>
+    <div class="card">🌳 Green Campus promoting eco-friendly values.</div>
+    <div class="card">🎨 Art, Music & Dance classes to boost creative expression.</div>
+    <div class="card">🏆 Regular Competitions to build confidence and skills.</div>
+    <div class="card">🔐 CCTV Surveillance for enhanced safety and security.</div>
+    <div class="card">🕹️ Modern Computer Education from early classes.</div>
+    <div class="card">🌐 Wi-Fi enabled campus for seamless learning access.</div>
+    <div class="card">🍽️ Hygienic Canteen with healthy food options.</div>
+    <div class="card">🗓️ Academic Calendar with timely updates and events.</div>
+    <div class="card">📸 Annual Day, Sports Meet, and Celebrations.</div>
+    <div class="card">💬 Parent-Teacher Interaction for student development.</div>
+    <div class="card">📈 Regular Progress Reports and assessments.</div>
+
+  </section>
+
+  <section id="teachers" class="hidden">
+    <h2>Our Teachers</h2>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Nk sir</h3>
+        <p>Math Expert with 10+ years of experience. Passionate about simplifying learning.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Rahul sir </h3>
+        <p>Physics Teacher who turns science into stories. Known for his engaging classes.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Aabit sir </h3>
+        <p>Social science Teacher who turns sst into stories. Known for his engaging classes.</p>
+      </div>
+    </div>
+    <div class="card profile-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-img" alt="Teacher">
+      <div>
+        <h3>Mr. Chudhri sir </h3>
+        <p>Hindi Teacher who teach student like a friend  </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="hidden">
+    <h2>Contact Us</h2>
+    <div class="card">
+      <label>Name</label><input type="text" placeholder="Your Full Name">
+      <label>Email</label><input type="email" placeholder="Your Email">
+      <label>Phone</label><input type="tel" placeholder="Your Phone Number">
+      <label>Message</label><textarea rows="3" placeholder="Your Message"></textarea>
+      <button>Send Message</button>
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="admission" class="hidden">
+    <h2>Admission Form</h2>
+    <div class="card">
+      <label>Student Name</label><input type="text" placeholder="Full Name">
+      <label>Parent Name</label><input type="text" placeholder="Parent Name">
+      <label>Email</label><input type="email" placeholder="Email">
+      <label>Phone</label><input type="tel" placeholder="Phone">
+      <label>Class for Admission</label><input type="text" placeholder="e.g. Class 6">
+      <label>Address</label><textarea rows="2" placeholder="Address"></textarea>
+      <button>Submit Form</button>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievement" class="hidden" style="padding: 40px; background: #f5f7fa;">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px; color: #333;">🎖️ Student Achievements</h2>
+
+    <div
+      style="max-width: 600px; margin: 10px auto; background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTopwa7tmoqV1Ixs2YQcENlGTy7xkzluqtzkQ&s"
+        alt="Achievement"
+        style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #007bff;">
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">
+        🎓 <strong>100% pass rate</strong> in Class 10<br>
+        🏅 13 students scored distinctions<br>
+        🏆 Champions in Sports & Olympiads
+      </p>
+    </div>
+
+    <div
+      style="max-width: 600px; margin: 10px auto; background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJMBEvU-tYFAmXvEUCYxMyY31QbhbahICYrg&s"
+        alt="Achievement"
+        style="width: 190px; height: 190px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #007bff;">
+      <p style="font-size: 1rem; color: #444; line-height: 1.6;">
+        🏅 High score of students<br>
+      </p>
+    </div>
+  </section>
+
+  <section id="timetable" class="hidden">
+    <h2>Class-wise Timetable</h2>
+    <div class="card">
+      <table>
+        <tr>
+          <th>Class</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Math</td>
+          <td>English</td>
+          <td>Science</td>
+          <td>History</td>
+          <td>Sports</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>English</td>
+          <td>Math</td>
+          <td>Geography</td>
+          <td>Science</td>
+          <td>Music</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Science</td>
+          <td>Math</td>
+          <td>Computer</td>
+          <td>Art</td>
+          <td>English</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="gallery" class="hidden">
+    <h2>Gallery</h2>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgdj2e3lFKw4sp52PXqluOugHEyZO82e55zw&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7t6z0IjlPyMG85Q6BgdAkAXcWNaKhED5-Tw&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs2AeEDmfQqNbDp91lNWinyDJAIauz-8IKng&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+    <div style="align-items: center; display: flex; justify-content: center;" class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaS6dcA7XTITDkBBr0bKtpW1X5ZSC1GZ_Cfw&s"
+        style="width:60%; border-radius: 12px; margin-bottom: 10px;" alt="School">
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 C.E. Academy | Designed with ❤️ by Team CodedMind
+  </footer>
+
+  <script>
+    function openNav() {
+      document.getElementById("sideNav").style.left = "0";
+    }
+    function closeNav() {
+      document.getElementById("sideNav").style.left = "-250px";
+    }
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      closeNav();
+    }
+  </script>
+</body>
+
+</html>
